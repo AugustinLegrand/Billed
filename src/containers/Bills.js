@@ -28,9 +28,9 @@ export default class {
     if (billUrl === null) {
       console.log("No image");
       billUrl = "https://firebasestorage.googleapis.com/v0/b/billable-677b6.appspot.com/o/justificatifs%2Funnamed.jpg?alt=media&token=5de56d8e-7859-4701-9f7f-d879fd5441f6"
-    }*/
-
-    $('#modaleFile').find(".modal-body").html(`<div style='text-align: center;'><img width=${imgWidth} src=${billUrl} data-testid="bill-img" /></div>`)
+    }
+*/
+    $('#modaleFile').find(".modal-body").html(`<div style='text-align: center;'><img width=100% src=${billUrl} data-testid="bill-img" /></div>`)
     $('#modaleFile').modal('show')
   }
 

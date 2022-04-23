@@ -18,6 +18,21 @@ const bill = {
   "pct": 20
 }
 
+const billNoFile = {
+  "id": "47qAXb6fIm2zOKkLzMro",
+  "vat": "80",
+  "status": "accepted",
+  "type": "Hôtel et logement",
+  "commentAdmin": "ok",
+  "commentary": "séminaire billed",
+  "name": "encore",
+  "fileName": "preview-facture-free-201801-pdf-1.jpg",
+  "date": "2004-04-04",
+  "amount": 400,
+  "email": "a@a",
+  "pct": 20
+}
+
 const billAccepted = {
   ...bill,
   "status": "accepted"
@@ -34,6 +49,14 @@ const billrefused = {
 }
 
 describe('Given I am connected as an Admin and I am on Dashboard Page', () => {
+  
+  test(('then, it should fileurl is not exist'), () => {
+    const html = DashboardFormUI(billNoFile)
+    document.body.innerHTML = html
+
+    expect(billNoFile.fileUrl).toBe('https://firebasestorage.googleapis.com/v0/b/billable-677b6.appspot.com/o/justificatifs%2Funnamed.jpg?alt=media&token=5de56d8e-7859-4701-9f7f-d879fd5441f6')
+  })
+
   describe('When bill data is passed to DashboardUI', () => {
     test(('Then, it should them in the page'), () => {
       const html = DashboardFormUI(bill)

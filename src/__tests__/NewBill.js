@@ -79,6 +79,7 @@ describe("Given I am connected as an employee", () => {
       expect(input.files[0]).toStrictEqual(fileTrue)
       expect(input.files).toHaveLength(1)
       expect(window.alert).toHaveBeenCalled()
+      expect(fileTrue.type).toContain('image/jpg')
 
     })
 
