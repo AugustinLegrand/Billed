@@ -24,12 +24,6 @@ export default class {
     const billUrl = icon.getAttribute("data-bill-url")
     const imgWidth = Math.floor($('#modaleFile').width() * 0.5)
     
-    /*
-    if (billUrl === null) {
-      console.log("No image");
-      billUrl = "https://firebasestorage.googleapis.com/v0/b/billable-677b6.appspot.com/o/justificatifs%2Funnamed.jpg?alt=media&token=5de56d8e-7859-4701-9f7f-d879fd5441f6"
-    }
-*/
     $('#modaleFile').find(".modal-body").html(`<div style='text-align: center;'><img width=100% src=${billUrl} data-testid="bill-img" /></div>`)
     $('#modaleFile').modal('show')
   }
@@ -52,9 +46,6 @@ export default class {
                 status: formatStatus(doc.data().status)
               }
             } catch(e) {
-              // if for some reason, corrupted data was introduced, we manage here failing formatDate function
-              // log the error and return unformatted date in that case
-              console.log(e,'for',doc.data())
               return {
                 ...doc.data(),
                 date: formatDate('2021-06-09'),
@@ -63,7 +54,6 @@ export default class {
             }
           })
           .filter(bill => bill.email === userEmail)
-          console.log('length', bills.length)
         return bills
       })
       .catch(error => error)

@@ -6,7 +6,7 @@ import Actions from './Actions.js'
 
 const row = (bill) => {
   return (`
-    <tr>
+    <tr data-testid="bill">
       <td>${bill.type}</td>
       <td>${bill.name}</td>
       <td>${bill.date}</td>
@@ -20,7 +20,14 @@ const row = (bill) => {
   }
 
 const rows = (data) => {
-  return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
+  return (data && data.length)
+    ? data
+        .sort((a, b) => {
+          return new Date(b.date) - new Date(a.date)
+        })
+        .map((bill) => row(bill))
+        .join("")
+    : ""
 }
 
 export default ({ data: bills, loading, error }) => {
@@ -31,7 +38,7 @@ export default ({ data: bills, loading, error }) => {
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Justificatif</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-testid="modaleClose">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
